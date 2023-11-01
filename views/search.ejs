@@ -1,0 +1,149 @@
+
+<%- include("partials/header.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+
+    <style>
+      
+      .card{
+        margin-left: 35px;
+        margin-top: 20px;
+        width: 22rem;
+  transition: transform 0.3s;
+      }
+      .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; 
+}
+.title{
+ font-family: Oswald ;
+  font-size: 70px;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  color: #070505b7;
+  font-weight: bold;
+  opacity: 79%;
+   user-select: none !important;
+}
+.card button#remove {
+  position: relative;
+  margin-top: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover button#remove {
+  opacity: 1;
+}
+.card button#update {
+  position: absolute;
+  margin-top: 10px;
+  left: 20%;
+  bottom: 3.3%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  
+}
+
+.card:hover button#update {
+  opacity: 1;
+
+}
+img{
+  
+  height: 200px;
+}
+  .foot{
+            
+            display: block;
+            position:sticky;
+            top: 90%;
+           
+         
+        }
+        .card-body{
+          text-align: center;
+        }
+        .card:hover  {
+  transform: scale(1.1); 
+}
+   #searchBar{
+    display: inline-block;
+    width: 220px;
+    position: sticky;
+    left: 40%;
+  margin-bottom: 20px;
+   }
+    #searchSubmit{
+    
+    position: relative;
+    left: 40%;
+
+   }
+   .numofcars{
+    font-family: Oswald ;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    color: #070505b7;
+    font-weight: bold;
+    opacity: 50%;
+    user-select: none !important;
+   }
+   .letter{
+    color: rgb(164, 107, 107) !important;
+   }
+    </style>
+</head>
+<body>
+
+    <h1 class="title"> Our Car Collection !</h1>
+    <h2 class="numofcars"> Number of Cars found <strong class="letter"><%= selected.length %></strong></h2>
+    <form action="/search" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Type Of Car ?" aria-label="Search" id="searchBar" name="typeofcar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchSubmit" >Search</button>
+          </form>
+
+
+<div class="card-container">
+  
+  <% for (let index = 0; index < selected.length; index++) { %>
+    <div class="card" style="width: 22rem;">
+      <img src="/images/<%=selected[index].carImage %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= selected[index].carType %></h5>
+        <h5 class="card-title"><%= selected[index].carModel %></h5>
+        <h5 class="card-title"><%= selected[index].carYear %></h5>
+        <p class="card-text"><%= selected[index].carInfo %></p>
+
+        <form action="/delete" method="post">
+          <button type="submit" class="btn btn-danger" id="remove" name="deletecar" value="<%=  selected[index]._id %>">Remove Car </button>
+          </form>
+           <form action="/update" method="post">
+          <button type="submit" class="btn btn-primary" id="update" name="updateCar" value="<%=  selected[index]._id %>">Update Car </button>
+          </form>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+  <div class="foot">
+ <%- include("partials/footer.ejs") %> 
+ </div>
+
+</body>
+</html>

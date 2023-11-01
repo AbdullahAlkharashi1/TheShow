@@ -1,0 +1,106 @@
+<%- include("partials/header.ejs") %> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <title>Document</title>
+
+    <style>
+.container{
+    max-width: 600px !important;
+position: relative;
+top: -30px;
+    
+}
+.carousel-inner{
+    border-radius: 20px;
+}
+  .foot{
+            
+            display: block;
+            position:sticky;
+            top: 90%;
+         
+        }
+        #maintitle{
+          user-select: none !important;
+        }
+    </style>
+</head>
+
+<body>
+ 
+
+    <div class="px-4 pt-5 my-5 text-center ">
+    <h1 class="display-4 fw-bold text-body-emphasis" id="maintitle">The Car Show</h1>
+    <div class="col-lg-6 mx-auto">
+
+      <p class="lead mb-4" id="maintitle">Welcome to our sleek and stylish car enthusiasts' haven! Our website is your one-stop destination for everything automotive. Whether you're a die-hard petrolhead or just someone in search of a reliable ride, you'll find a wide range of cars, 
+        from classic to cutting-edge, along with expert reviews and insights to help you make the right choice. 
+        To unlock the full spectrum of our offerings and gain access to exclusive deals and content, we invite you to register or log in. By joining our growing community, you'll be the first to know about the latest updates and hottest vehicles on the market. So, don't miss out on this incredible
+         opportunity – sign up today and start your journey towards the car of your dreams!</p>
+ <% if (!isLoggedIn) { %>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <a class="nav-link" > <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3"  > <a class="nav-link" href="/register">Sign up Today!</button></a>
+          <% }  %>
+      </div>
+    </div>
+      <!--Carousel-->
+    <div class="container">
+ <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner" >
+    <div class="carousel-item active">
+      <img src="/images/f.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/f150.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/7.jpg" class="d-block w-100" alt="...">
+    </div>
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next m" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+</div>
+
+  </div>
+
+ </div>
+
+ <!--footer-->
+ <div class="foot" id="maintitle">
+ <%- include("partials/footer.ejs") %> 
+ </div>
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var myCarousel = new bootstrap.Carousel(document.getElementById('carouselExampleIndicators'), {
+      interval: 2500 
+    });
+  });
+</script>
+
+ 
+</body>
+
+</html>
+
